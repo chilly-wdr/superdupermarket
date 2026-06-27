@@ -12,12 +12,6 @@ Supermarket_Management_System
 main - menus and funcs
 database - python + sql
 
-whenever a bill is done..the stock has to go down?.. - make a separate transaction table 
-update reward points automatically..how.. - PYTHON..calculate from amount col
-redeem points..change total? - python again first decrease and then add earned points
-update stock number - use the transaction table
-how add items.. - cashier has to enter the items into python 'cart' (a tuple of list/list of tuple)
-
 stock:
  product_id(primary) | product_name(not null + unique) | stock_available(not null) | last_restock_date(not null) | market_price(not null) | price (not null) | 
    add new product
@@ -52,6 +46,7 @@ staff:
    add new staff
    update name
    update number
+   delete staff details
 
 
 discount:
