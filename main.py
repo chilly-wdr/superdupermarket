@@ -1,3 +1,4 @@
+import staff
 cat_choice=1
 while True:
     print("""| supermarket manager |
@@ -12,8 +13,7 @@ while True:
     cat_choice=int(input("enter your choice of category: "))
 
     if cat_choice==1:
-        act_choice=1
-        while act_choice!=4:
+        while True:
             print("""| billing | 
                 choose action:
                     1. new bill
@@ -24,8 +24,7 @@ while True:
             #billing.py commands
 
     elif cat_choice==2:
-        act_choice=1
-        while act_choice!=4:
+        while True:
             print("""| discount |
                 choose action: 
                     1. add new discount
@@ -36,8 +35,7 @@ while True:
             #discount.py commands
 
     elif cat_choice==3:
-        act_choice=1
-        while act_choice!=5:
+        while True:
             print("""| rewards |
                 choose action:
                     1. register customer
@@ -48,21 +46,31 @@ while True:
             act_choice=int(input("enter your choice of action: "))
             #rewards.py commands
     
-    elif cat_choice==4:
-        act_choice=1
-        while act_choice!=4:
+    elif cat_choice==4: 
+        while True:
             print("""| staff |
                 choose action:
                     1. add new staff
                     2. update staff name
                     3. update staff mobile number
-                    4. back""")
+                    4. delete staff details
+                    5. back""")
             act_choice=int(input("enter your choice of action: "))
-            #staff.py commands
+            if act_choice==1:
+                staff.add_staff()
+            elif act_choice==2:
+                staff.update_staff_name()
+            elif act_choice==3:
+                staff.update_staff_mobile()
+            elif act_choice==4:
+                staff.delete_staff()
+            elif act_choice==5:
+                break
+            else:
+                print("invalid choice")
 
     elif cat_choice==5:
-        act_choice=1
-        while act_choice!=8:
+        while True:
             print("""| stock |
                 choose action:
                     1. add new product
@@ -77,8 +85,7 @@ while True:
             #stock.py commands
 
     elif cat_choice==6:
-        act_choice=1
-        while act_choice!=3:
+        while True:
             print("""| transactions |
                 choose action:
                     1. add new transaction
