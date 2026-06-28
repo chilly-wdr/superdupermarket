@@ -1,4 +1,4 @@
-import staff
+import staff,rewards
 cat_choice=1
 while True:
     print("""| supermarket manager |
@@ -44,7 +44,18 @@ while True:
                     4. view customer reward points
                     5. back""")
             act_choice=int(input("enter your choice of action: "))
-            #rewards.py commands
+            if act_choice==1:
+                rewards.register_customer()
+            elif act_choice==2:
+                rewards.update_customer_name()
+            elif act_choice==3:
+                rewards.update_customer_mobile()
+            elif act_choice==4:
+                rewards.view_reward_points()
+            elif act_choice==5:
+                break
+            else:
+                print("invalid choice")
     
     elif cat_choice==4: 
         while True:
