@@ -3,7 +3,7 @@ from database import db,cursor,new_id
 def add_staff():
     n=int(input("how many staff to be added?: "))
     for i in range(n):    
-        staff_id=new_id(staff,staff_id)
+        staff_id=new_id("staff","staff_id")
         staff_name=input("enter staff name: ")
         mobile_no=int(input("enter staff mobile number: "))
         cursor.execute("INSERT INTO STAFF (staff_id, staff_name, mobile_number) VALUES (%s, %s, %s)",
