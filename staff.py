@@ -1,17 +1,15 @@
-import mysql.connector as m
-db=m.connect(host='localhost',user='root',passwd='tuple',database='supermarket')
-cursor=db.cursor()
+from database import db,cursor,new_id
 
 def add_staff():
     n=int(input("how many staff to be added?: "))
     for i in range(n):    
-        staff_id=int(input("enter new staff id: "))
+        staff_id=new_id(staff,staff_id)
         staff_name=input("enter staff name: ")
         mobile_no=int(input("enter staff mobile number: "))
         cursor.execute("INSERT INTO STAFF (staff_id, staff_name, mobile_number) VALUES (%s, %s, %s)",
     (staff_id, staff_name, mobile_no))
     db.commit()
-    
+add_staff()
 def update_staff_name():
     staff_id=int(input("enter staff id: "))
     new_name=input("enter new staff name: ")
@@ -26,6 +24,6 @@ def update_staff_mobile():
 
 def delete_staff():
     staff_id=int(input("enter staff id: "))
-    cursor.execute("DELETE FROM STAFF WHERE STAFF_ID={}".format(staff_id))
+    cursor.execute("DELETE FROM STAFF WHERE STAFF_ID=%s",(staff_id))
     db.commit()
 
