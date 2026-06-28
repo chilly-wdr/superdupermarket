@@ -9,7 +9,7 @@ def add_staff():
         cursor.execute("INSERT INTO STAFF (staff_id, staff_name, mobile_number) VALUES (%s, %s, %s)",
     (staff_id, staff_name, mobile_no))
     db.commit()
-add_staff()
+
 def update_staff_name():
     staff_id=int(input("enter staff id: "))
     new_name=input("enter new staff name: ")
