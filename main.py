@@ -1,4 +1,4 @@
-import staff,rewards
+import staff,rewards,stock
 cat_choice=1
 while True:
     print("""| supermarket manager |
@@ -93,7 +93,25 @@ while True:
                     7. calculate profit
                     8. back""")
             act_choice=int(input("enter your choice of action: "))
-            #stock.py commands
+            act_choice=int(input("enter your choice of action: "))
+            if act_choice==1:
+                stock.add_new_product()
+            elif act_choice==2:
+                stock.update_product_name()
+            elif act_choice==3:
+                stock.update_stock()
+            elif act_choice==4:
+                stock.update_market_price()
+            elif act_choice==5:
+                stock.update_price()
+            elif act_choice==6:
+                stock.delete_product()
+            elif act_choice==7:
+                stock.calculate_profit()
+            elif act_choice==8:
+                break
+            else:
+                print("invalid choice")
 
     elif cat_choice==6:
         while True:

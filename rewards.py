@@ -27,10 +27,10 @@ def update_customer_mobile():
 
 def view_reward_points():
     mobile_no=int(input("enter customer mobile number: "))
-    cursor.execute("SELECT REWARD_POINTS FROM REWARDS WHERE MOBILE_NUMBER=%s",(mobile_no))
+    cursor.execute("SELECT REWARD_POINTS FROM REWARDS WHERE MOBILE_NUMBER=%s",(mobile_no,))
     result=cursor.fetchone()
     if result is None:
         print("customer not found")
     else:
         reward_point=result[0]
-        return "reward points: ",reward_point
+        print("reward points: ",reward_point)
