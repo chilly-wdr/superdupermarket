@@ -40,12 +40,14 @@ customer/rewards:
 billing:
  bill_id(primary) | date_of_transaction(not null) | time_of_transaction(not null) | staff_id(foreign) | no_of_items(not null) | total_amount(not null) | reward_customer(Y/N) | customer_id(foreign) | issued_reward_points | reward_points_redeemed(default=0)
    new bill
-   view bills
+   view bills (date condition)
+  
    
 
 transaction: (to update stock number) 
  bill_id(foreign) | product_id(foreign) | qty | unit_price | total_price 
    cart->transaction
+   new cart 
 
 staff:
  staff_id(primary) | staff_name | mobile_number

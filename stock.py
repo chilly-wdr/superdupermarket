@@ -55,3 +55,5 @@ def calculate_profit():
         print("product not found")
     else:
         print("profit:", profit)
+
+#def display_product()
