@@ -35,5 +35,4 @@ def display_staff():
     staff_id=int(input("enter the staff id: "))
     cursor.execute("SELECT * FROM STAFF WHERE STAFF_ID=%s",(staff_id,))
     result=cursor.fetchone()
-    print(result[0])
-    
+    print(result) 
