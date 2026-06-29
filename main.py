@@ -1,4 +1,4 @@
-import staff,rewards,stock,discount
+import staff,rewards,stock,discount,transaction,billing
 cat_choice=1
 while True:
     print("""| supermarket manager |
@@ -17,11 +17,23 @@ while True:
             print("""| billing | 
                 choose action:
                     1. new bill
-                    2. search bills
-                    3. view bills of the day
-                    4. back""")
+                    2. view bill
+                    3. view itemized bill
+                    4. view bills of the day
+                    5. back""")
             act_choice=int(input("enter your choice of action: "))
-            #billing.py commands
+            if act_choice==1:
+                transaction.new_cart()
+            elif act_choice==2:
+                billing.view_bill()
+            elif act_choice==3:
+                transaction.view_itemized_bill()
+            elif act_choice==4:
+                billing.view_bills_today()
+            elif act_choice==5:
+                break
+            else:
+                print("invalid input")
 
     elif cat_choice==2:
         while True:
@@ -30,9 +42,21 @@ while True:
                     1. add new discount
                     2. search discounts
                     3. view current discounts
-                    4. back""")
+                    4. view discount expiry
+                    5. back""")
             act_choice=int(input("enter your choice of action: "))
-            #discount
+            if act_choice==1:
+                discount.add_new_discount()
+            elif act_choice==2:
+                discount.search_discount()
+            elif act_choice==3:
+                discount.view_current_discounts()
+            elif act_choice==4:
+                discount.view_discount_expiry()
+            elif act_choice==5:
+                break
+            else:
+                print("invalid input")
 
     elif cat_choice==3:
         while True:
@@ -112,17 +136,8 @@ while True:
             else:
                 print("invalid choice")
 
-    elif cat_choice==6:
-        while True:
-            print("""| transactions |
-                choose action:
-                    1. add new transaction
-                    2. view transaction
-                    3. back""")
-            act_choice=int(input("enter your choice of action: "))
-            #transactions.py commands
     
-    elif cat_choice==7:
+    elif cat_choice==6:
         break
 
     else: 
