@@ -27,8 +27,13 @@ def update_staff_mobile():
 
 def delete_staff():
     staff_id=int(input("enter staff id: "))
-    cursor.execute("DELETE FROM STAFF WHERE STAFF_ID=%s",(staff_id))
+    cursor.execute("DELETE FROM STAFF WHERE STAFF_ID=%s",(staff_id,))
     print("staff deleted successfully!")
     db.commit()
 
-#def display_staff():
+def display_staff():
+    staff_id=int(input("enter the staff id: "))
+    cursor.execute("SELECT * FROM STAFF WHERE STAFF_ID=%s",(staff_id,))
+    result=cursor.fetchone()
+    print(result[0])
+    
