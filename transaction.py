@@ -2,9 +2,16 @@ from database import db,cursor,new_id
 from billing import new_bill
 
 def get_unit_price(prod_id):
-    cursor.execute("SELECT PRICE FROM STOCK WHERE PRODUCT_ID=%s",(prod_id,))
-    price=cursor.fetchone()
-    return price[0]
+    cursor.execute("SELECT PRODUCT_ID FROM DISCOUNT")
+    prod_ids=cursor.fetchall()
+    if (prod_id,) in prod_ids:
+        cursor.execute("SELECT DISCOUNTED_PRICE FROM DISCOUNT WHERE PRODUCT_ID=%s",(prod_id,))
+        price=cursor.fetchone()
+        return price[0]
+    else:
+        cursor.execute("SELECT PRICE FROM STOCK WHERE PRODUCT_ID=%s",(prod_id,))
+        price=cursor.fetchone()
+        return price[0]
 
 def calculate_new_stock(prod_id,qty):
     cursor.execute("SELECT STOCK_AVAILABLE-%s FROM STOCK WHERE PRODUCT_ID=%s",(qty,prod_id))
