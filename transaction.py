@@ -7,7 +7,8 @@ def get_unit_price(prod_id):
     return price[0]
 
 def calculate_new_stock(prod_id,qty):
-
+    cursor.execute("SELECT STOCK_AVAILABLE-%s FROM STOCK WHERE PRODUCT_ID=%s",(qty,prod_id))
+    new_stock=cursor.fetchone()
     cursor.execute("UPDATE STOCK SET STOCK_AVAILABLE=%s WHERE PRODUCT_ID=%s",(new_stock[0],prod_id))
     db.commit()
 
