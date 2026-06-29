@@ -8,8 +8,7 @@ while True:
             3. rewards
             4. staff
             5. stock
-            6. transactions
-            7. back""")
+            6. back""")
     cat_choice=int(input("enter your choice of category: "))
 
     if cat_choice==1:
