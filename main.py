@@ -1,4 +1,4 @@
-import staff,rewards,stock
+import staff,rewards,stock,discount
 cat_choice=1
 while True:
     print("""| supermarket manager |
@@ -32,7 +32,7 @@ while True:
                     3. view current discounts
                     4. back""")
             act_choice=int(input("enter your choice of action: "))
-            #discount.py commands
+            #discount
 
     elif cat_choice==3:
         while True:
@@ -92,7 +92,6 @@ while True:
                     6. delete product 
                     7. calculate profit
                     8. back""")
-            act_choice=int(input("enter your choice of action: "))
             act_choice=int(input("enter your choice of action: "))
             if act_choice==1:
                 stock.add_new_product()
