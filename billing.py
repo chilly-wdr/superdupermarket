@@ -56,8 +56,7 @@ def view_bill():
     print("bill: ",bill)
 
 def view_bills_today():
-    date=date.today().isoformat()
-    cursor.execute("SELECT * FROM BILLING WHERE DATE_OF_TRANSACTION=%s",(date,))
+    cursor.execute("SELECT * FROM BILLING WHERE DATE_OF_TRANSACTION=CURDATE()")
     result=cursor.fetchall()
     print("bills: ")
     for i in result:
