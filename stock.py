@@ -54,6 +54,11 @@ def calculate_profit():
     if profit is None:
         print("product not found")
     else:
-        print("profit:", profit)
+        print("profit:", profit[0])
 
-#def display_product()
+def display_product():
+    prod_id=int(input("enter the product id: "))
+    cursor.execute("SELECT * FROM STOCK WHERE PRODUCT_ID=%s",(prod_id,))
+    result=cursor.fetchall()
+    print(result)
+    
