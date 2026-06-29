@@ -89,7 +89,8 @@ while True:
                     2. update staff name
                     3. update staff mobile number
                     4. delete staff details
-                    5. back""")
+                    5. view staff
+                    6. back""")
             act_choice=int(input("enter your choice of action: "))
             if act_choice==1:
                 staff.add_staff()
@@ -100,6 +101,8 @@ while True:
             elif act_choice==4:
                 staff.delete_staff()
             elif act_choice==5:
+                staff.display_staff()
+            elif act_choice==6:
                 break
             else:
                 print("invalid choice")
