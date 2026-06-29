@@ -28,7 +28,6 @@ def search_discount():
     print(discount)
 
 def view_current_discounts():
-    date=date.today()
     cursor.execute("SELECT discount_id,prod_id,discounted_price,end_date FROM DISCOUNT WHERE CURDATE()<=END_DATE")
     result=cursor.fetchall()
     for i in result:
