@@ -8,7 +8,7 @@ def add_staff():
         mobile_no=int(input("enter staff mobile number: "))
         cursor.execute("INSERT INTO STAFF (staff_id, staff_name, mobile_number) VALUES (%s, %s, %s)",
     (staff_id, staff_name, mobile_no))
-    print("staff added successfully!")
+    print("staff registered successfully!")
     db.commit()
 
 def update_staff_name():
@@ -31,3 +31,4 @@ def delete_staff():
     print("staff deleted successfully!")
     db.commit()
 
+#def display_staff():
