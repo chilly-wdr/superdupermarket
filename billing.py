@@ -52,12 +52,18 @@ def new_bill(bill_id,staff_id):
 def view_bill():
     bill_id=int(input("enter bill id: "))
     cursor.execute("SELECT * FROM BILLING WHERE BILL_ID=%s",(bill_id,))
-    bill=cursor.fetchone()
-    print("bill: ",bill)
+    bill=list(cursor.fetchone())
+    bill[1]=str(bill[1])
+    bill[2]=str(bill[2])
+    print("bill: ",tuple(bill))
 
 def view_bills_today():
     cursor.execute("SELECT * FROM BILLING WHERE DATE_OF_TRANSACTION=CURDATE()")
     result=cursor.fetchall()
     print("bills: ")
     for i in result:
-        print(i)
+        bill=list(i)
+        bill[1]=str(bill[1])
+        bill[2]=str(bill[2])
+        print(tuple(bill))
+
