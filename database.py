@@ -1,7 +1,7 @@
 import mysql.connector as m
 db=m.connect(host='localhost',user='root',passwd='tuple',database='supermarket')
 
-cursor=db.cursor()
+cursor=db.cursor(buffered=True)
 
 def new_id(table,column):
     cursor.execute(f"SELECT MAX({column}) FROM {table}")
