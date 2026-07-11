@@ -23,8 +23,10 @@ def add_new_discount():
 def search_discount():
     discount_id=int(input("enter discount id: "))
     cursor.execute("SELECT * FROM DISCOUNT WHERE DISCOUNT_ID=%s",(discount_id,))
-    discount=cursor.fetchone()
-    print(discount)
+    discount=list(cursor.fetchone())
+    discount[4]=str(discount[4])
+    discount[5]=str(discount[5])
+    print(tuple(discount))
 
 def view_current_discounts():
     cursor.execute("SELECT discount_id,product_id,discounted_price,end_date FROM DISCOUNT WHERE CURDATE()<=END_DATE")
