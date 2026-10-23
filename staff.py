@@ -31,8 +31,14 @@ def delete_staff():
     print("staff deleted successfully!")
     db.commit()
 
-def display_staff():
+def search_staff():
     staff_id=int(input("enter the staff id: "))
     cursor.execute("SELECT * FROM STAFF WHERE STAFF_ID=%s",(staff_id,))
     result=cursor.fetchone()
     print(result) 
+
+def view_staff():
+    cursor.execute("SELECT * FROM STAFF")
+    result=cursor.fetchall()
+    for staff in result:
+        print(staff)

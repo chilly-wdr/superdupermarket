@@ -13,16 +13,33 @@ def register_customer():
 
 def update_customer_name():
     customer_id=int(input("enter customer id: "))
-    new_name=input("enter new customer name: ")
-    cursor.execute("UPDATE REWARDS SET CUSTOMER_NAME=%s WHERE CUSTOMER_ID=%s",(new_name,customer_id))
-    print("customer name updated!")
+    cursor.execute("SELECT CUSTOMER_ID FROM REWARDS")
+    result=cursor.fetchall()
+    ids=[]
+    for i in result:
+        ids.append(i[0])
+    if customer_id in ids:
+        new_name=input("enter new customer name: ")
+        cursor.execute("UPDATE REWARDS SET CUSTOMER_NAME=%s WHERE CUSTOMER_ID=%s",(new_name,customer_id))
+        print("customer name updated!")
+    else:
+        print("customer does not exist")
     db.commit()
+
 
 def update_customer_mobile():
     customer_id=int(input("enter customer id: "))
-    new_mobile=int(input("enter new customer mobile number: "))
-    cursor.execute("UPDATE REWARDS SET MOBILE_NUMBER=%s WHERE CUSTOMER_ID=%s",(new_mobile,customer_id))
-    print("customer mobile number updated!")
+    cursor.execute("SELECT CUSTOMER_ID FROM REWARDS")
+    result=cursor.fetchall()
+    ids=[]
+    for i in result:
+        ids.append(i[0])
+    if customer_id in ids:
+        new_mobile=int(input("enter new customer mobile number: "))
+        cursor.execute("UPDATE REWARDS SET MOBILE_NUMBER=%s WHERE CUSTOMER_ID=%s",(new_mobile,customer_id))
+        print("customer mobile number updated!")
+    else:
+        print("customer does not exist")
     db.commit()
 
 def view_reward_points():
@@ -34,3 +51,14 @@ def view_reward_points():
     else:
         reward_point=result[0]
         print("reward points: ",reward_point)
+
+def view_customers():
+    cursor.execute("SELECT * FROM REWARDS")
+    result=cursor.fetchall()
+    header=('customer_id','customer_name','mobile_no','DOJ','reward_points')
+    print(header)
+    for i in result:
+        customer=list(i)
+        customer[3]=str(customer[3])
+        print(tuple(customer))
+

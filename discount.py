@@ -26,15 +26,22 @@ def search_discount():
     discount=list(cursor.fetchone())
     discount[4]=str(discount[4])
     discount[5]=str(discount[5])
+    header=('discount_id','product_id','discount_percentage','discounted_price','start_date','end_date')
+    print(header)
     print(tuple(discount))
 
 def view_current_discounts():
     cursor.execute("SELECT discount_id,product_id,discounted_price,end_date FROM DISCOUNT WHERE CURDATE()<=END_DATE")
     result=cursor.fetchall()
-    for i in result:
-        discount=list(i)
-        discount[3]=str(discount[3])
-        print(tuple(discount))
+    if len(result)>0:
+        for i in result:
+            discount=list(i)
+            discount[3]=str(discount[3])
+            header=('discount_id','product_id','discounted_price','end_date')
+            print(header)
+            print(tuple(discount))
+    else:
+        print("no current discounts")
 
 def view_discount_expiry():
     discount_id=int(input("enter discount id: "))

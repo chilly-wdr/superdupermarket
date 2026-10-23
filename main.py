@@ -65,7 +65,8 @@ while True:
                     2. update customer name
                     3. update mobile number
                     4. view customer reward points
-                    5. back""")
+                    5. view customers
+                    6. back""")
             act_choice=int(input("enter your choice of action: "))
             if act_choice==1:
                 rewards.register_customer()
@@ -76,6 +77,8 @@ while True:
             elif act_choice==4:
                 rewards.view_reward_points()
             elif act_choice==5:
+                rewards.view_customers()
+            elif act_choice==6:
                 break
             else:
                 print("invalid choice")
@@ -88,8 +91,9 @@ while True:
                     2. update staff name
                     3. update staff mobile number
                     4. delete staff details
-                    5. view staff
-                    6. back""")
+                    5. search staff
+                    6. view staff
+                    7. back""")
             act_choice=int(input("enter your choice of action: "))
             if act_choice==1:
                 staff.add_staff()
@@ -100,8 +104,10 @@ while True:
             elif act_choice==4:
                 staff.delete_staff()
             elif act_choice==5:
-                staff.display_staff()
+                staff.search_staff()
             elif act_choice==6:
+                staff.view_staff()
+            elif act_choice==7:
                 break
             else:
                 print("invalid choice")
@@ -117,7 +123,9 @@ while True:
                     5. update price 
                     6. delete product 
                     7. calculate profit
-                    8. back""")
+                    8. search product
+                    9. view stock
+                    10. back""")
             act_choice=int(input("enter your choice of action: "))
             if act_choice==1:
                 stock.add_new_product()
@@ -134,10 +142,13 @@ while True:
             elif act_choice==7:
                 stock.calculate_profit()
             elif act_choice==8:
+                stock.search_product()
+            elif act_choice==9:
+                stock.view_stock()
+            elif act_choice==10:
                 break
             else:
                 print("invalid choice")
-
     
     elif cat_choice==6:
         break

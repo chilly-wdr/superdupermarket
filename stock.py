@@ -2,15 +2,21 @@ from database import db,cursor,new_id
 from datetime import date
 
 def add_new_product():
-    prod_id=new_id("stock","product_id")
     prod_name=input("enter the product name: ")
-    stock=int(input("enter stock available: "))
-    restock_date=date.today()
-    m_price=float(input("enter market price of the product: "))
-    price=float(input("enter the price of product: "))
-    cursor.execute("INSERT INTO STOCK VALUES(%s,%s,%s,%s,%s,%s)",(prod_id,prod_name,stock,restock_date,m_price,price))
-    print("product registered successfully!")
-    print("product id: ",prod_id)
+    cursor.execute("SELECT PRODUCT_NAME FROM STOCK")
+    prod=cursor.fetchall()
+    for i in prod:
+        if prod_name.lower()==i[0].lower():
+            print("product already exists, choose to update stock instead.")
+        else:
+            prod_id=new_id("stock","product_id")
+            stock=int(input("enter stock available: "))
+            restock_date=date.today()
+            m_price=float(input("enter market price of the product: "))
+            price=float(input("enter the price of product: "))
+            cursor.execute("INSERT INTO STOCK VALUES(%s,%s,%s,%s,%s,%s)",(prod_id,prod_name,stock,restock_date,m_price,price))
+            print("product registered successfully!")
+            print("product id: ",prod_id)
     db.commit()
 
 def update_product_name():
@@ -56,9 +62,15 @@ def calculate_profit():
     else:
         print("profit:", profit[0])
 
-def display_product():
+def search_product():
     prod_id=int(input("enter the product id: "))
     cursor.execute("SELECT * FROM STOCK WHERE PRODUCT_ID=%s",(prod_id,))
     result=cursor.fetchall()
     print(result)
+
+def view_stock():
+    cursor.execute("SELECT * FROM STOCK")
+    stock=cursor.fetchall()
+    for prod in stock:
+        print(prod)
     
