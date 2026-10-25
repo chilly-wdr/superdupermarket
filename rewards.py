@@ -47,7 +47,7 @@ def view_reward_points():
     cursor.execute("SELECT REWARD_POINTS FROM REWARDS WHERE MOBILE_NUMBER=%s",(mobile_no,))
     result=cursor.fetchone()
     if result is None:
-        print("customer not found")
+        print("customer does not exist")
     else:
         reward_point=result[0]
         print("reward points: ",reward_point)

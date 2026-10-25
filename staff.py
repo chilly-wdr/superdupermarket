@@ -13,29 +13,49 @@ def add_staff():
 
 def update_staff_name():
     staff_id=int(input("enter staff id: "))
-    new_name=input("enter new staff name: ")
-    cursor.execute("UPDATE STAFF SET STAFF_NAME=%s WHERE STAFF_ID=%s",(new_name,staff_id))
-    print("staff name updated successfully!")
+    cursor.execute("SELECT STAFF_ID FROM STAFF")
+    rec=cursor.fetchall()
+    if (staff_id,)in rec:
+        new_name=input("enter new staff name: ")
+        cursor.execute("UPDATE STAFF SET STAFF_NAME=%s WHERE STAFF_ID=%s",(new_name,staff_id))
+        print("staff name updated successfully!")
+    else:
+        print("staff does not exist")
     db.commit()
 
 def update_staff_mobile():
     staff_id=int(input("enter staff id: "))
-    new_mobile=int(input("enter new mobile number: "))
-    cursor.execute("UPDATE STAFF SET MOBILE_NUMBER=%s WHERE STAFF_ID=%s",(new_mobile,staff_id))
-    print("staff mobile number updated successfully!")
+    cursor.execute("SELECT STAFF_ID FROM STAFF")
+    rec=cursor.fetchall()
+    if (staff_id,) in rec:
+        new_mobile=int(input("enter new mobile number: "))
+        cursor.execute("UPDATE STAFF SET MOBILE_NUMBER=%s WHERE STAFF_ID=%s",(new_mobile,staff_id))
+        print("staff mobile number updated successfully!")
+    else:
+        print("staff does not exist")
     db.commit()
 
 def delete_staff():
     staff_id=int(input("enter staff id: "))
-    cursor.execute("DELETE FROM STAFF WHERE STAFF_ID=%s",(staff_id,))
-    print("staff deleted successfully!")
+    cursor.execute("SELECT STAFF_ID FROM STAFF")
+    rec=cursor.fetchall()
+    if (staff_id,) in rec:
+        cursor.execute("DELETE FROM STAFF WHERE STAFF_ID=%s",(staff_id,))
+        print("staff deleted successfully!")
+    else:
+        print("staff does not exist")
     db.commit()
 
 def search_staff():
     staff_id=int(input("enter the staff id: "))
-    cursor.execute("SELECT * FROM STAFF WHERE STAFF_ID=%s",(staff_id,))
-    result=cursor.fetchone()
-    print(result) 
+    cursor.execute("SELECT STAFF_ID FROM STAFF")
+    rec=cursor.fetchall()
+    if (staff_id,) in rec:
+        cursor.execute("SELECT * FROM STAFF WHERE STAFF_ID=%s",(staff_id,))
+        result=cursor.fetchone()
+        print(result)
+    else:
+        print("staff does not exist")
 
 def view_staff():
     cursor.execute("SELECT * FROM STAFF")

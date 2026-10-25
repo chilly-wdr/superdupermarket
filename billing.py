@@ -24,7 +24,7 @@ def new_bill(bill_id,staff_id):
     time_of_transaction=datetime.now().time().replace(microsecond=0)
     item_count=no_of_items(bill_id)
     bill_total=total_amount(bill_id)
-    reward_customer=input("rewards customer?(Y/N): ")
+    reward_customer=input("rewards customer?(Y/N): ").upper()
     points_redeemed=0
     if reward_customer=='Y':
         mobile_no=int(input("enter customer mobile number: "))
@@ -51,11 +51,16 @@ def new_bill(bill_id,staff_id):
 
 def view_bill():
     bill_id=int(input("enter bill id: "))
-    cursor.execute("SELECT * FROM BILLING WHERE BILL_ID=%s",(bill_id,))
-    bill=list(cursor.fetchone())
-    bill[1]=str(bill[1])
-    bill[2]=str(bill[2])
-    print("bill: ",tuple(bill))
+    cursor.execute("SELECT BILL_ID FROM BILLING")
+    rec=cursor.fetchall()
+    if (bill_id,) in rec:
+        cursor.execute("SELECT * FROM BILLING WHERE BILL_ID=%s",(bill_id,))
+        bill=list(cursor.fetchone())
+        bill[1]=str(bill[1])
+        bill[2]=str(bill[2])
+        print("bill: ",tuple(bill))
+    else:
+        print("bill does not exist")
 
 def view_bills_today():
     cursor.execute("SELECT * FROM BILLING WHERE DATE_OF_TRANSACTION=CURDATE()")

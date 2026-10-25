@@ -21,52 +21,84 @@ def add_new_product():
 
 def update_product_name():
     prod_id=int(input("enter the product id: "))
-    new_name=input("enter the new product name: ")
-    cursor.execute("UPDATE STOCK SET PRODUCT_NAME=%s WHERE PRODUCT_ID=%s",(new_name,prod_id))
-    print("product name updated successfully!")
+    cursor.execute("SELECT PRODUCT_ID FROM STOCK")
+    rec=cursor.fetchall()
+    if (product_id,) in rec:
+        new_name=input("enter the new product name: ")
+        cursor.execute("UPDATE STOCK SET PRODUCT_NAME=%s WHERE PRODUCT_ID=%s",(new_name,prod_id))
+        print("product name updated successfully!")
+    else:
+        print("product does not exist")
     db.commit()
 
 def update_stock():
     prod_id=int(input("enter the product id: "))
-    stock=int(input("enter new stock: "))
-    cursor.execute("UPDATE STOCK SET STOCK_AVAILABLE=STOCK_AVAILABLE+%s WHERE PRODUCT_ID=%s",(stock,prod_id))
-    print("stock updated successfully!")
+    cursor.execute("SELECT PRODUCT_ID FROM STOCK")
+    rec=cursor.fetchall()
+    if (product_id,) in rec:
+        stock=int(input("enter new stock: "))
+        cursor.execute("UPDATE STOCK SET STOCK_AVAILABLE=STOCK_AVAILABLE+%s WHERE PRODUCT_ID=%s",(stock,prod_id))
+        print("stock updated successfully!")
+    else:
+        print("product does not exist")
     db.commit()
 
 def delete_product():
     prod_id=int(input("enter the product id: "))
-    cursor.execute("DELETE FROM STOCK WHERE PRODUCT_ID=%s",(prod_id,))
-    print("product deleted successfully!")
+    cursor.execute("SELECT PRODUCT_ID FROM STOCK")
+    rec=cursor.fetchall()
+    if (product_id,) in rec:
+        cursor.execute("DELETE FROM STOCK WHERE PRODUCT_ID=%s",(prod_id,))
+        print("product deleted successfully!")
+    else:
+        print("product does not exist")
     db.commit()
 
 def update_price():
     prod_id=int(input("enter the product id: "))
-    new_price=float(input("enter new price for the product: "))
-    cursor.execute("UPDATE STOCK SET PRICE=%s WHERE PRODUCT_ID=%s",(new_price,prod_id))
-    print("price updated successfully!")
+    cursor.execute("SELECT PRODUCT_ID FROM STOCK")
+    rec=cursor.fetchall()
+    if (product_id,) in rec:
+        new_price=float(input("enter new price for the product: "))
+        cursor.execute("UPDATE STOCK SET PRICE=%s WHERE PRODUCT_ID=%s",(new_price,prod_id))
+        print("price updated successfully!")
+    else:
+        print("product does not exist")
     db.commit()
 
 def update_market_price():
     prod_id=int(input("enter the product id: "))
-    new_mprice=float(input("enter new price for the product: "))
-    cursor.execute("UPDATE STOCK SET MARKET_PRICE=%s WHERE PRODUCT_ID=%s",(new_mprice,prod_id))
-    print("market price updated successfully!")
+    cursor.execute("SELECT PRODUCT_ID FROM STOCK")
+    rec=cursor.fetchall()
+    if (product_id,) in rec:
+        new_mprice=float(input("enter new price for the product: "))
+        cursor.execute("UPDATE STOCK SET MARKET_PRICE=%s WHERE PRODUCT_ID=%s",(new_mprice,prod_id))
+        print("market price updated successfully!")
+    else:
+        print("product does not exist")
     db.commit()
 
 def calculate_profit():
     prod_id=int(input("enter the product id: "))
-    cursor.execute("SELECT PRICE-MARKET_PRICE FROM STOCK WHERE PRODUCT_ID=%s",(prod_id,))
-    profit=cursor.fetchone()
-    if profit is None:
-        print("product not found")
-    else:
+    cursor.execute("SELECT PRODUCT_ID FROM STOCK")
+    rec=cursor.fetchall()
+    if (product_id,) in rec:
+        cursor.execute("SELECT PRICE-MARKET_PRICE FROM STOCK WHERE PRODUCT_ID=%s",(prod_id,))
+        profit=cursor.fetchone()
         print("profit:", profit[0])
+    else:
+        print("product does not exist")
 
 def search_product():
     prod_id=int(input("enter the product id: "))
-    cursor.execute("SELECT * FROM STOCK WHERE PRODUCT_ID=%s",(prod_id,))
-    result=cursor.fetchall()
-    print(result)
+    cursor.execute("SELECT PRODUCT_ID FROM STOCK")
+    rec=cursor.fetchall()
+    if (product_id,) in rec:
+        cursor.execute("SELECT * FROM STOCK WHERE PRODUCT_ID=%s",(prod_id,))
+        result=cursor.fetchall()
+        print(result)
+    else:
+        print("product does not exist")
 
 def view_stock():
     cursor.execute("SELECT * FROM STOCK")

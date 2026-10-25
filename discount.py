@@ -22,13 +22,18 @@ def add_new_discount():
 
 def search_discount():
     discount_id=int(input("enter discount id: "))
-    cursor.execute("SELECT * FROM DISCOUNT WHERE DISCOUNT_ID=%s",(discount_id,))
-    discount=list(cursor.fetchone())
-    discount[4]=str(discount[4])
-    discount[5]=str(discount[5])
-    header=('discount_id','product_id','discount_percentage','discounted_price','start_date','end_date')
-    print(header)
-    print(tuple(discount))
+    cursor.execute("SELECT DISCOUNT_ID FROM DISCOUNT")
+    rec=cursor.fetchall()
+    if (discount_id,) in rec:
+        cursor.execute("SELECT * FROM DISCOUNT WHERE DISCOUNT_ID=%s",(discount_id,))
+        discount=list(cursor.fetchone())
+        discount[4]=str(discount[4])
+        discount[5]=str(discount[5])
+        header=('discount_id','product_id','discount_percentage','discounted_price','start_date','end_date')
+        print(header)
+        print(tuple(discount))
+    else:
+        print("discount does not exist")
 
 def view_current_discounts():
     cursor.execute("SELECT discount_id,product_id,discounted_price,end_date FROM DISCOUNT WHERE CURDATE()<=END_DATE")

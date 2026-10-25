@@ -11,7 +11,7 @@ discount:
 CREATE TABLE DISCOUNT(discount_id INT PRIMARY KEY,product_id INT,discount_percentage INT,discounted_price FLOAT,start_date DATE NOT NULL,end_date DATE NOT NULL,FOREIGN KEY (product_id) REFERENCES stock(product_id));
 
 billing:
-CREATE TABLE BILLING(bill_id INT PRIMARY KEY,date_of_transaction DATE NOT NULL,time_of_transaction TIME NOT NULL,staff_id INT NOT NULL,no_of_items INT NOT NULL,total_amount FLOAT NOT NULL,reward_customer CHAR(1),customer_mobile_number,issued_reward_points INT,reward_points_redeemed INT,FOREIGN KEY (staff_id) REFERENCES staff(staff_id));
+CREATE TABLE BILLING(bill_id INT PRIMARY KEY,date_of_transaction DATE NOT NULL,time_of_transaction TIME NOT NULL,staff_id INT NOT NULL,no_of_items INT NOT NULL,total_amount FLOAT NOT NULL,reward_customer CHAR(1),customer_mobile_number int(8),issued_reward_points INT,reward_points_redeemed INT,FOREIGN KEY (staff_id) REFERENCES staff(staff_id));
 
 transaction:
 CREATE TABLE TRANSACTION(bill_id INT,product_id INT,qty INT,unit_price FLOAT,total_price FLOAT,FOREIGN KEY (product_id) REFERENCES stock(product_id));
